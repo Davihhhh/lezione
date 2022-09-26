@@ -17,7 +17,7 @@ namespace lezione19_9_22
         public Form1()
         {
             InitializeComponent();
-
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,19 +43,20 @@ namespace lezione19_9_22
         const string filename = @"./dati.csv";
         string line = "";
         int recordLenght = 110;
-
+        
 
         const char end_of_line = '#';
         const int end_of_line_position = 109;
-
+        
 
         public void letturafile()
-        {
+        {           
             var sr = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
             byte[] br = new byte[recordLenght];
 
             BinaryReader reader = new BinaryReader(sr);
-
+            
+            string str = "";
             string[] strsplit = new string[9];
 
             sr.Seek(0, SeekOrigin.Begin);
@@ -66,6 +67,8 @@ namespace lezione19_9_22
                 line = Encoding.ASCII.GetString(br, 0, br.Length);
 
                 strsplit = line.Split(',');
+
+                strsplit = str.Split(',');
 
                 lista[conta_record].col0 = Convert.ToInt32(strsplit[0]);
                 MessageBox.Show(lista[conta_record].col0.ToString());
@@ -98,6 +101,7 @@ namespace lezione19_9_22
                 MessageBox.Show(num.ToString());
                 string ssr = strsplit[8].Substring(num - 1);
                 MessageBox.Show(strsplit[8]);
+
                 check_double_dot(ref strsplit[8]);
                 lista[conta_record].col8 = Convert.ToDouble(strsplit[8]);
 
@@ -117,6 +121,7 @@ namespace lezione19_9_22
             }
             str = new string(cr);
         }
+
         public void check_double_comma(ref string str)      //scrittura sul file
         {
             char[] cr = str.ToCharArray();
@@ -130,6 +135,6 @@ namespace lezione19_9_22
             str = new string(cr);
         }
 
-    
+       
     }
 }
